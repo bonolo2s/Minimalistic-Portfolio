@@ -157,14 +157,11 @@ export function HeroSection() {
           <div className="relative h-72 w-72 lg:h-80 lg:w-80">
             <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl" />
             <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full border-2 border-border bg-secondary">
-              <div className="flex flex-col items-center gap-2 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                  <span className="text-2xl font-bold text-primary">{"<>"}</span>
-                </div>
-                <span className="text-xs text-muted-foreground">
-                  Your Photo Here
-                </span>
-              </div>
+              <img
+                src="/bonolo.jpg"
+                alt="Bonolo Selowa"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
