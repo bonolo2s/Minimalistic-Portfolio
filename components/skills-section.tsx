@@ -50,36 +50,64 @@ const skillCategories = [
 
 const experience = [
   {
-    period: "2023 — Present",
+    period: "Aug 2025 — Feb 2026",
     role: "Full-Stack Software Developer",
-    company: "Enterprise Solutions",
-    description:
-      "Architecting and building scalable web applications using .NET, React, and cloud infrastructure. Leading backend system design with Clean Architecture and CQRS patterns.",
+    company: "Elan Tour De Force, 28 Burnett Street Hatfield, Pretoria · Remote",
+    description: [
+      "Responsible for building and maintaining a scalable backend for product management using Clean Architecture, domain-driven principles, and event-driven patterns.",
+      "Implements secure authentication and authorization (JWT, role-based access, rate limiting) to protect sensitive business operations.",
+      "Develops production-ready REST APIs that power internal tools, admin dashboards, and customer-facing systems.",
+      "Designs and manages the PostgreSQL database, ensuring clean migrations, data integrity, and high-performance queries.",
+      "Implements full audit logging to provide visibility, accountability, and traceability across all platform activities.",
+      "Improves system speed and stability through caching strategies and back-end performance optimisations.",
+      "Dockerizes services and automates deployments to reduce errors, increase reliability, and streamline release cycles.",
+      "Plans environment orchestration and deployment for different environments, ensuring consistent, secure, and isolated dev and production systems.",
+    ],
     technologies: ["C#", ".NET", "React", "PostgreSQL", "Docker", "AWS"],
   },
   {
-    period: "2022 — 2023",
-    role: "Backend Developer",
-    company: "Tech Startup",
-    description:
-      "Built RESTful APIs and microservices serving thousands of concurrent users. Implemented CI/CD pipelines and containerized deployments.",
-    technologies: ["Node.js", "Express", "MongoDB", "Docker", "Azure"],
+    period: "Mar 2024 — jun 2025",
+    role: "Software Developer",
+    company: "Param Solutions, Parktown north, Randburg · Remote",
+    description: [
+      "Utilized C# ASP.NET Core to design and implement robust and scalable applications that can handle high traffic loads without compromising performance.",
+      "Worked within a microservices architecture that enabled independent deployments, clearer service boundaries, and faster iteration cycles.",
+      "Used CQRS with delegates within Clean Architecture to improve code maintainability, separation of concerns, and scalability while reducing coupling between application layers.",
+      "Implemented CI/CD pipelines to catch errors early in the development process.",
+      "Diagnosed and resolved post-deployment failures on Azure, including service crashes, publishing profile issues, and MongoDB connectivity errors, ensuring rapid recovery and minimal downtime.",
+      "Developed and integrated APIs using FastAPI, enabling high-performance backend services and faster response times.",
+      "Worked on cross-platform .NET MAUI applications, improving accessibility and user experience across multiple devices.",
+      "Worked on Next.js frontend, integrating APIs and ensuring seamless communication with backend services.",
+      "Performed unit testing and validation to maintain high code quality and prevent regressions.",
+      "Optimized web applications for responsiveness and mobile performance across devices.",
+    ],
+    technologies: ["React", "Next.js","C# ASP.NET Core", "MongoDB","Microservices", "Docker", "Azure"],
   },
   {
-    period: "2021 — 2022",
-    role: "Frontend Developer",
-    company: "Digital Agency",
-    description:
-      "Developed responsive web applications with React and TypeScript. Collaborated with designers to create pixel-perfect, accessible interfaces.",
-    technologies: ["React", "TypeScript", "CSS3", "Bootstrap", "JavaScript"],
+    period: "April 2024 — Jun 2024",
+    role: "Frontend Developer · Remote",
+    company: "Defopage",
+    description: [
+      "Successfully translated Figma designs into fully responsive, SEO-optimized HTML pages, ensuring high performance and accessibility.",
+      "Implemented cross-browser compatibility, delivering consistent and polished user experiences across all major web browsers and devices.",
+    ],
+    technologies: ["HTML", "TypeScript", "CSS3", "Bootstrap", "JavaScript"],
   },
-  {
-    period: "2020 — 2021",
-    role: "Junior Developer",
-    company: "University of Pretoria",
-    description:
-      "Started my tech journey building web applications. Gained foundational skills in HTML, CSS, JavaScript, and modern frameworks.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Python", "SQL"],
+{
+    period: "Jan 2022 — March 2023",
+    role: "Freelance Junior Developer",
+    company: "Self-Employed · Remote",
+    description: [
+      "Built and delivered responsive websites and landing pages for small businesses and clients using HTML, CSS, and JavaScript.",
+      "Translated client briefs and wireframes into clean, functional frontend interfaces with attention to layout, spacing, and typography.",
+      "Ensured cross-browser compatibility and mobile responsiveness across all delivered projects.",
+      "Managed client communication, gathered requirements, and iterated on designs based on feedback.",
+      "Integrated third-party APIs and services such as contact forms, maps, and social media feeds.",
+      "Optimized page load performance through image compression, lazy loading, and minimal dependency usage.",
+      "Maintained and updated existing client websites, fixing bugs and improving UI consistency.",
+      "Practiced version control using Git and GitHub for source management and project delivery.",
+    ],
+    technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "Git"],
   },
 ]
 
@@ -217,9 +245,14 @@ export function SkillsSection() {
                         {exp.company}
                       </span>
                     </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {exp.description}
-                    </p>
+                    <ul className="mt-2 flex flex-col gap-1">
+                      {exp.description.map((point, i) => (
+                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-muted-foreground">
+                          <span className="mt-1 text-primary">•</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {exp.technologies.map((tech) => (
                         <span
