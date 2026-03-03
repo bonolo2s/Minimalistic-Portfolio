@@ -26,6 +26,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <hr className="border-border" />
         </div>
+        <ContactSection />
       </main>
       <Footer />
     </>

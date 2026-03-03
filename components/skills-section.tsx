@@ -6,52 +6,51 @@ const skillCategories = [
   {
     title: "Frontend",
     skills: [
-      { name: "React / Next.js", level: 95 },
-      { name: "TypeScript", level: 92 },
-      { name: "HTML5 / CSS3", level: 95 },
-      { name: "JavaScript", level: 95 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "Bootstrap", level: 85 },
+      "React / Next.js",
+      "TypeScript",
+      "HTML5 / CSS3",
+      "JavaScript",
+      "Tailwind CSS",
+      "Bootstrap",
     ],
   },
   {
     title: "Backend",
     skills: [
-      { name: "Node.js / Express", level: 90 },
-      { name: "C# / .NET / ASP.NET", level: 88 },
-      { name: "Python / FastAPI", level: 85 },
-      { name: "REST APIs", level: 92 },
-      { name: "GraphQL", level: 78 },
-      { name: "Authentication / JWT", level: 90 },
+      "Node.js / Express",
+      "C# / .NET / ASP.NET",
+      "Python / FastAPI / Django",
+      "REST APIs",
+      "Authentication / JWT",
     ],
   },
   {
     title: "Database",
     skills: [
-      { name: "PostgreSQL", level: 88 },
-      { name: "SQL Server", level: 85 },
-      { name: "MongoDB", level: 82 },
-      { name: "Redis", level: 75 },
-      { name: "Database Design", level: 88 },
-      { name: "Query Optimization", level: 82 },
+      "PostgreSQL",
+      "SQL Server",
+      "MongoDB",
+      "Redis",
+      "Database Design",
+      "Query Optimization",
     ],
   },
   {
     title: "DevOps & Cloud",
     skills: [
-      { name: "Docker", level: 88 },
-      { name: "Kubernetes", level: 80 },
-      { name: "AWS", level: 85 },
-      { name: "Azure", level: 82 },
-      { name: "CI/CD Pipelines", level: 88 },
-      { name: "Infrastructure as Code", level: 80 },
+      "Docker",
+      // "Kubernetes",
+      "AWS",
+      "Azure",
+      "CI/CD Pipelines",
+      "Infrastructure as Code",
     ],
   },
 ]
 
 const experience = [
   {
-    period: "2023 \u2014 Present",
+    period: "2023 — Present",
     role: "Full-Stack Software Developer",
     company: "Enterprise Solutions",
     description:
@@ -59,7 +58,7 @@ const experience = [
     technologies: ["C#", ".NET", "React", "PostgreSQL", "Docker", "AWS"],
   },
   {
-    period: "2022 \u2014 2023",
+    period: "2022 — 2023",
     role: "Backend Developer",
     company: "Tech Startup",
     description:
@@ -67,7 +66,7 @@ const experience = [
     technologies: ["Node.js", "Express", "MongoDB", "Docker", "Azure"],
   },
   {
-    period: "2021 \u2014 2022",
+    period: "2021 — 2022",
     role: "Frontend Developer",
     company: "Digital Agency",
     description:
@@ -75,7 +74,7 @@ const experience = [
     technologies: ["React", "TypeScript", "CSS3", "Bootstrap", "JavaScript"],
   },
   {
-    period: "2020 \u2014 2021",
+    period: "2020 — 2021",
     role: "Junior Developer",
     company: "University of Pretoria",
     description:
@@ -133,37 +132,40 @@ export function SkillsSection() {
           {skillCategories.map((category, catIndex) => (
             <div
               key={category.title}
-              className={`rounded-xl border border-border bg-card p-6 transition-all duration-700 hover:border-primary/20 ${
+              className={`group relative overflow-hidden rounded-xl border border-border bg-card p-6 transition-all duration-700 hover:border-primary/20 ${
                 isVisible
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
               style={{ transitionDelay: `${200 + catIndex * 100}ms` }}
             >
-              <h3 className="mb-5 text-lg font-semibold text-foreground">
-                {category.title}
-              </h3>
-              <div className="flex flex-col gap-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="mb-1.5 flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        {skill.name}
-                      </span>
-                      <span className="font-mono text-xs text-primary">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                      <div
-                        className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
-                        style={{
-                          width: isVisible ? `${skill.level}%` : "0%",
-                          transitionDelay: `${400 + catIndex * 150}ms`,
-                        }}
-                      />
-                    </div>
-                  </div>
+              {/* Subtle hover accent line */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              {/* Category header */}
+              <div className="mb-5 flex items-center gap-2">
+                <span className="text-xs text-primary">◆</span>
+                <h3 className="text-sm font-semibold uppercase tracking-widest text-foreground">
+                  {category.title}
+                </h3>
+              </div>
+
+              {/* Skill chips */}
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <span
+                    key={skill}
+                    className={`inline-flex items-center rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground transition-all duration-500 hover:border-primary/40 hover:bg-primary/5 hover:text-foreground ${
+                      isVisible
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-3 opacity-0"
+                    }`}
+                    style={{
+                      transitionDelay: `${200 + catIndex * 100 + skillIndex * 50}ms`,
+                    }}
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
