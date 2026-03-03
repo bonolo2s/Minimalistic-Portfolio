@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Mail, Linkedin, Github, Twitter, ArrowUpRight } from "lucide-react"
+import { Mail, Linkedin, Github, ArrowUpRight, Send } from "lucide-react"
 
 const socials = [
   {
@@ -22,17 +22,13 @@ const socials = [
     href: "https://github.com",
     icon: Github,
   },
-  {
-    label: "Twitter / X",
-    value: "@yourhandle",
-    href: "https://twitter.com",
-    icon: Twitter,
-  },
 ]
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const [formState, setFormState] = useState({ name: "", email: "", message: "" })
+  const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,6 +43,12 @@ export function ContactSection() {
       if (current) observer.unobserve(current)
     }
   }, [])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Hook up your form handler here
+    setSubmitted(true)
+  }
 
   return (
     <section
@@ -79,51 +81,110 @@ export function ContactSection() {
           </p>
         </div>
 
-        {/* Contact Cards */}
-        <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
-          {socials.map((social, index) => (
-            <a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-700 hover:border-primary/30 hover:bg-primary/5 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: `${200 + index * 100}ms` }}
-            >
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20">
-                <social.icon size={20} />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-foreground">
-                  {social.label}
-                </p>
-                <p className="text-xs text-muted-foreground">{social.value}</p>
-              </div>
-              <ArrowUpRight
-                size={16}
-                className="text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div
-          className={`mt-16 text-center transition-all delay-500 duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          <a
-            href="mailto:hello@example.com"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
+        {/* Main layout: form + socials */}
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 lg:flex-row">
+          {/* Socials */}
+          <div
+            className={`flex flex-col gap-4 lg:w-72 transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+            style={{ transitionDelay: "300ms" }}
           >
-            <Mail size={16} />
-            Send Me a Message
-          </a>
+            {socials.map((social, index) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all duration-700 hover:border-primary/30 hover:bg-primary/5 ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                }`}
+                style={{ transitionDelay: `${400 + index * 100}ms` }}
+              >
+                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary/20">
+                  <social.icon size={20} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-foreground">
+                    {social.label}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{social.value}</p>
+                </div>
+                <ArrowUpRight
+                  size={16}
+                  className="text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
+              </a>
+            ))}
+          </div>
+          {/* Contact Form */}
+          <div
+            className={`flex-1 rounded-xl border border-border bg-card p-6 transition-all duration-700 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+            style={{ transitionDelay: "200ms" }}
+          >
+            {submitted ? (
+              <div className="flex h-full flex-col items-center justify-center gap-3 py-10 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Send size={20} />
+                </div>
+                <p className="font-semibold text-foreground">Message sent!</p>
+                <p className="text-sm text-muted-foreground">{"I'll get back to you soon."}</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    value={formState.name}
+                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                    className="rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    value={formState.email}
+                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    className="rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Message
+                  </label>
+                  <textarea
+                    required
+                    rows={5}
+                    placeholder="Tell me about your project..."
+                    value={formState.message}
+                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                    className="resize-none rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
+                >
+                  <Send size={15} />
+                  Send Message
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>
@@ -143,7 +204,7 @@ export function Footer() {
           {" All rights reserved."}
         </p>
         <div className="flex items-center gap-4">
-          {[Github, Linkedin, Twitter].map((Icon, i) => (
+          {[Github, Linkedin].map((Icon, i) => (
             <a
               key={i}
               href="#"
