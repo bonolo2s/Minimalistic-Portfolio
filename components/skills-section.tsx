@@ -1,0 +1,240 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "React / Next.js", level: 95 },
+      { name: "TypeScript", level: 92 },
+      { name: "HTML5 / CSS3", level: 95 },
+      { name: "JavaScript", level: 95 },
+      { name: "Tailwind CSS", level: 90 },
+      { name: "Bootstrap", level: 85 },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "Node.js / Express", level: 90 },
+      { name: "C# / .NET / ASP.NET", level: 88 },
+      { name: "Python / FastAPI", level: 85 },
+      { name: "REST APIs", level: 92 },
+      { name: "GraphQL", level: 78 },
+      { name: "Authentication / JWT", level: 90 },
+    ],
+  },
+  {
+    title: "Database",
+    skills: [
+      { name: "PostgreSQL", level: 88 },
+      { name: "SQL Server", level: 85 },
+      { name: "MongoDB", level: 82 },
+      { name: "Redis", level: 75 },
+      { name: "Database Design", level: 88 },
+      { name: "Query Optimization", level: 82 },
+    ],
+  },
+  {
+    title: "DevOps & Cloud",
+    skills: [
+      { name: "Docker", level: 88 },
+      { name: "Kubernetes", level: 80 },
+      { name: "AWS", level: 85 },
+      { name: "Azure", level: 82 },
+      { name: "CI/CD Pipelines", level: 88 },
+      { name: "Infrastructure as Code", level: 80 },
+    ],
+  },
+]
+
+const experience = [
+  {
+    period: "2023 \u2014 Present",
+    role: "Full-Stack Software Developer",
+    company: "Enterprise Solutions",
+    description:
+      "Architecting and building scalable web applications using .NET, React, and cloud infrastructure. Leading backend system design with Clean Architecture and CQRS patterns.",
+    technologies: ["C#", ".NET", "React", "PostgreSQL", "Docker", "AWS"],
+  },
+  {
+    period: "2022 \u2014 2023",
+    role: "Backend Developer",
+    company: "Tech Startup",
+    description:
+      "Built RESTful APIs and microservices serving thousands of concurrent users. Implemented CI/CD pipelines and containerized deployments.",
+    technologies: ["Node.js", "Express", "MongoDB", "Docker", "Azure"],
+  },
+  {
+    period: "2021 \u2014 2022",
+    role: "Frontend Developer",
+    company: "Digital Agency",
+    description:
+      "Developed responsive web applications with React and TypeScript. Collaborated with designers to create pixel-perfect, accessible interfaces.",
+    technologies: ["React", "TypeScript", "CSS3", "Bootstrap", "JavaScript"],
+  },
+  {
+    period: "2020 \u2014 2021",
+    role: "Junior Developer",
+    company: "University of Pretoria",
+    description:
+      "Started my tech journey building web applications. Gained foundational skills in HTML, CSS, JavaScript, and modern frameworks.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Python", "SQL"],
+  },
+]
+
+export function SkillsSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true)
+      },
+      { threshold: 0.1 }
+    )
+    const current = sectionRef.current
+    if (current) observer.observe(current)
+    return () => {
+      if (current) observer.unobserve(current)
+    }
+  }, [])
+
+  return (
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="relative px-6 py-24 lg:py-32"
+    >
+      {/* Subtle background accent */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-primary/3 blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-6xl">
+        {/* Section Header */}
+        <div
+          className={`mb-16 transition-all duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
+            Skills & Experience
+          </p>
+          <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            My technical toolkit
+          </h2>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="mb-24 grid gap-6 sm:grid-cols-2">
+          {skillCategories.map((category, catIndex) => (
+            <div
+              key={category.title}
+              className={`rounded-xl border border-border bg-card p-6 transition-all duration-700 hover:border-primary/20 ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+              style={{ transitionDelay: `${200 + catIndex * 100}ms` }}
+            >
+              <h3 className="mb-5 text-lg font-semibold text-foreground">
+                {category.title}
+              </h3>
+              <div className="flex flex-col gap-4">
+                {category.skills.map((skill) => (
+                  <div key={skill.name}>
+                    <div className="mb-1.5 flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">
+                        {skill.name}
+                      </span>
+                      <span className="font-mono text-xs text-primary">
+                        {skill.level}%
+                      </span>
+                    </div>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
+                      <div
+                        className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
+                        style={{
+                          width: isVisible ? `${skill.level}%` : "0%",
+                          transitionDelay: `${400 + catIndex * 150}ms`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Experience Timeline */}
+        <div
+          className={`transition-all duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+          style={{ transitionDelay: "600ms" }}
+        >
+          <h3 className="mb-10 text-2xl font-bold tracking-tight text-foreground">
+            Experience
+          </h3>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-0 top-0 hidden h-full w-px bg-border md:block" />
+
+            <div className="flex flex-col gap-10">
+              {experience.map((exp, index) => (
+                <div
+                  key={index}
+                  className={`group relative flex flex-col gap-4 transition-all duration-700 md:flex-row md:gap-10 md:pl-8 ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${700 + index * 150}ms` }}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute -left-1 top-1.5 hidden h-2 w-2 rounded-full bg-primary transition-all duration-300 group-hover:scale-150 group-hover:bg-primary md:block" />
+
+                  {/* Period */}
+                  <div className="flex-shrink-0 md:w-40">
+                    <span className="font-mono text-sm text-muted-foreground">
+                      {exp.period}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 rounded-xl border border-border bg-card p-5 transition-all duration-300 hover:border-primary/20">
+                    <h4 className="text-base font-semibold text-foreground">
+                      {exp.role}{" "}
+                      <span className="text-primary">
+                        {"· "}
+                        {exp.company}
+                      </span>
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {exp.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {exp.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
