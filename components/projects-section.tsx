@@ -6,6 +6,7 @@ import { ExternalLink, Github, Folder } from "lucide-react"
 const projects = [
   {
     title: "Enterprise LMS Platform",
+    image: "/security.png",
     description:
       "A full-stack learning management system serving thousands of concurrent users. Features include course management, real-time progress tracking, role-based access control, and automated grading.",
     technologies: ["C#", ".NET", "React", "PostgreSQL", "Docker", "AWS"],
@@ -15,6 +16,7 @@ const projects = [
   },
   {
     title: "E-Commerce Automation Engine",
+    image: "/ecommerce.png",
     description:
       "End-to-end e-commerce platform with payment integration, real-time order tracking, inventory management, and automated email notifications. Built with microservices architecture.",
     technologies: ["Node.js", "Express", "MongoDB", "Stripe", "Redis", "Docker"],
@@ -24,6 +26,7 @@ const projects = [
   },
   {
     title: "AI-Powered Content Generator",
+    image: "/ai.png",
     description:
       "An intelligent content creation tool leveraging machine learning APIs for text generation, summarization, and sentiment analysis with a clean React dashboard.",
     technologies: ["Python", "FastAPI", "React", "TypeScript", "OpenAI", "PostgreSQL"],
@@ -33,6 +36,7 @@ const projects = [
   },
   {
     title: "DevOps Dashboard",
+    image: "/devops.png",
     description:
       "Real-time monitoring dashboard for CI/CD pipelines, container health, and deployment status across multiple environments.",
     technologies: ["Next.js", "TypeScript", "Docker", "K8s", "WebSocket"],
@@ -42,6 +46,7 @@ const projects = [
   },
   {
     title: "Task Management API",
+    image: "/api.png",
     description:
       "RESTful API with JWT authentication, rate limiting, and comprehensive Swagger documentation. Follows Clean Architecture principles.",
     technologies: ["C#", "ASP.NET Core", "SQL Server", "Azure"],
@@ -51,6 +56,7 @@ const projects = [
   },
   {
     title: "Real-Time Chat Application",
+    image: "/chat.png",
     description:
       "WebSocket-based chat app with rooms, typing indicators, message persistence, and file sharing capabilities.",
     technologies: ["Node.js", "Socket.io", "React", "MongoDB", "Redis"],
@@ -114,7 +120,14 @@ export function ProjectsSection() {
               }`}
               style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
-              <div className="flex flex-col gap-6 p-6 md:p-8">
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-10 transition-opacity duration-300 group-hover:opacity-15"
+                style={{ backgroundImage: `url(${project.image})` }}
+              />
+
+              {/* Content */}
+              <div className="relative z-10 flex flex-col gap-6 p-6 md:p-8">
                 {/* Project header */}
                 <div className="flex items-start justify-between">
                   <div>
@@ -187,60 +200,66 @@ export function ProjectsSection() {
             {otherProjects.map((project, index) => (
               <div
                 key={project.title}
-                className={`group flex flex-col rounded-xl border border-border bg-card p-5 transition-all duration-700 hover:border-primary/20 hover:-translate-y-1 ${
+                className={`group relative overflow-hidden flex flex-col rounded-xl border border-border bg-card p-5 transition-all duration-700 hover:border-primary/20 hover:-translate-y-1 ${
                   isVisible
                     ? "translate-y-0 opacity-100"
                     : "translate-y-8 opacity-0"
                 }`}
                 style={{ transitionDelay: `${800 + index * 100}ms` }}
               >
-                <div className="mb-4 flex items-center justify-between">
-                  <Folder
-                    size={28}
-                    className="text-primary"
-                  />
-                  <div className="flex items-center gap-3">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                        aria-label={`View ${project.title} on GitHub`}
-                      >
-                        <Github size={18} />
-                      </a>
-                    )}
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
-                        aria-label={`View ${project.title} live`}
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
+                {/* Background image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-10 transition-opacity duration-300 group-hover:opacity-15"
+                  style={{ backgroundImage: `url(${project.image})` }}
+                />
+
+                {/* Content */}
+                <div className="relative z-10 flex flex-col flex-1">
+                  <div className="mb-4 flex items-center justify-between">
+                    <Folder size={28} className="text-primary" />
+                    <div className="flex items-center gap-3">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                          aria-label={`View ${project.title} on GitHub`}
+                        >
+                          <Github size={18} />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                          aria-label={`View ${project.title} live`}
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <h4 className="mb-2 font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
-                  {project.title}
-                </h4>
-                <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {project.description}
-                </p>
+                  <h4 className="mb-2 font-semibold text-foreground transition-colors duration-200 group-hover:text-primary">
+                    {project.title}
+                  </h4>
+                  <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {project.description}
+                  </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="font-mono text-xs text-muted-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="font-mono text-xs text-muted-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}

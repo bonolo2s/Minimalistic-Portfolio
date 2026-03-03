@@ -32,7 +32,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#" className="text-xl font-bold tracking-tight text-foreground">
-          Dev<span className="text-primary">Portfolio</span>.
+          After<span className="text-primary">Commit</span>.
         </a>
 
         {/* Desktop Nav */}
