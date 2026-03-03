@@ -6,20 +6,20 @@ import { Mail, Linkedin, Github, ArrowUpRight, Send } from "lucide-react"
 const socials = [
   {
     label: "Email",
-    value: "hello@example.com",
-    href: "mailto:hello@example.com",
+    value: "bonololloyd003@gmail.com",
+    // href: "bonololloyd003@gmail.com",
     icon: Mail,
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/yourprofile",
-    href: "https://linkedin.com",
+    value: "",
+    href: "http://www.linkedin.com/in/bonololloyd",
     icon: Linkedin,
   },
   {
     label: "GitHub",
-    value: "github.com/yourprofile",
-    href: "https://github.com",
+    value: "",
+    href: "https://github.com/bonolo2s",
     icon: Github,
   },
 ]
