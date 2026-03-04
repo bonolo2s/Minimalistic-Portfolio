@@ -23,14 +23,14 @@ export function Navbar() {
   }, [])
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 overflow-hidden transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+<header
+  className={`fixed top-0 left-0 right-0 z-50 bg-red-500 transition-all duration-300 ${
+    isScrolled
+      ? "backdrop-blur-xl border-b border-border"
+      : ""
+  }`}
+>
+  <nav className="bg-purple-500 mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a href="#" className="text-xl font-bold tracking-tight text-foreground">
           Impossible<span className="text-primary">Commits</span>.
         </a>
