@@ -30,9 +30,9 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#" className="text-xl font-bold tracking-tight text-foreground">
-          I<span className="text-primary">Commits</span>.
+      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
+        <a href="#" className="shrink-0 text-xl font-bold tracking-tight text-foreground">
+          Impossible<span className="text-primary">Commits</span>.
         </a>
 
         {/* Desktop Nav */}
