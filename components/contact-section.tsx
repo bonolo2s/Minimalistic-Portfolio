@@ -54,7 +54,7 @@ export function ContactSection() {
     data.append("Message", formState.message)
     data.append("_captcha", "false")
 
-    await fetch("bonololloyd003@gmail.com", {
+    await fetch("https://formsubmit.co/3748d2263f323751430329adbcc3a49f", {
       method: "POST",
       body: data,
     })
