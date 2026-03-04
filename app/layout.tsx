@@ -14,22 +14,22 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'DevPortfolio | Full-Stack Software Developer',
+  title: 'ImpossibleCommits | Full-Stack Software Developer',
   description:
-    'Driven by detail and a passion for learning, I craft top-notch web applications. Explore my work, skills, and experience in full-stack development, DevOps, and cloud infrastructure.',
+    'Driven by detail and a passion for innovation, I craft top-notch web applications. Explore my work, skills, and experience in full-stack development, DevOps, and cloud infrastructure.',
   generator: 'v0.app',
   icons: {
     icon: [
       {
-        url: '/after-commit.png',
+        url: '/ImpossibleCommits-logo.png',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/after-commit.png',
+        url: '/ImpossibleCommits-logo.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/after-commit.png',
+        url: '/ImpossibleCommits-logo.png',
         type: 'image/svg+xml',
       },
     ],
