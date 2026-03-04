@@ -78,13 +78,13 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            {/* <a
+            <a
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="mt-2 rounded-lg bg-primary px-4 py-3 text-center text-sm font-medium text-primary-foreground transition-all duration-200 hover:bg-primary/90"
             >
               Hire Me
-            </a> */}
+            </a>
           </div>
         </div>
       )}
