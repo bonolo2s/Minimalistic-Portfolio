@@ -31,12 +31,10 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        {/* <a href="#" className="text-xl font-bold tracking-tight text-foreground">
-          Impossible<span className="text-primary">Commits</span>.
-        </a> */}
-        <a href="#" className="text-base font-bold tracking-tight text-foreground sm:text-xl">
-          Impossible<span className="text-primary">Commits</span>.
+        <a href="#" className="text-xl font-bold tracking-tight text-foreground">
+          I<span className="text-primary">Commits</span>.
         </a>
+
         {/* Desktop Nav */}
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
