@@ -219,7 +219,7 @@ export function Footer() {
     <footer className="border-t border-border px-6 py-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
         <a href="#" className="text-lg font-bold tracking-tight text-foreground">
-          After<span className="text-primary">Commit</span>.
+          Impossible<span className="text-primary">Commits</span>.
         </a>
         <p className="text-sm text-muted-foreground">
           {"Designed & built with care. \u00A9 "}
