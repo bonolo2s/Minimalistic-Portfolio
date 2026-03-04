@@ -146,12 +146,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Professional Image Placeholder */}
+        {/* Professional Image */}
         <div
           className={`relative flex-shrink-0 transition-all delay-500 duration-700 ${
             isVisible
-              ? "translate-x-0 opacity-100"
-              : "translate-x-8 opacity-0"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
           }`}
         >
           <div className="relative h-72 w-72 lg:h-80 lg:w-80">

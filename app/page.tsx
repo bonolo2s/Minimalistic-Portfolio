@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <HeroSection />
         <div className="mx-auto max-w-6xl px-6">
           <hr className="border-border" />
